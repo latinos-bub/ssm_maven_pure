@@ -1,0 +1,61 @@
+springmvc.xml 需要配置的内容:
+    <!--配置包扫描-->
+    <context:component-scan base-package="com.latin.*"/>
+
+
+    <!--开启springmvc注解驱动-->
+    <mvc:annotation-driven/>
+
+
+    <!--配置视图解析器：是为了在url上不写 pages InternalResourceViewResolver-->
+    <bean id=" =" class="InternalResourceViewResolver"/>
+
+
+    <!--配置文件上传-->
+
+
+    <!--配置定时器任务（可以暂时不写）-->
+
+
+
+applicationContext.xml 需要配置的内容:
+    <!--配置读取jdbc.properties配置文件的工具类-->
+
+
+    <!--配置数据源及数据库连接池-->
+
+
+    <!--读取书写sql语句的xml文件的位置-->
+
+
+    <!--读取dao曾接口类，将dao层与对应的xml文件关联-->
+
+
+
+
+
+mybatis.xml 需要配置的内容:
+    <!--配置别名-->
+
+
+    <!--配置PageHelper插件-->
+
+
+
+web.xml 需要配置的内容:
+    <!--配置默认访问首页-->
+
+
+    <!--配置处理中文乱码的过滤器类-->
+
+
+
+    <!--配置springmvc的核心类-->
+
+
+
+    <!--配置错误页面-->
+
+
+
+参考一篇博客:https://cloud.tencent.com/developer/article/1190994

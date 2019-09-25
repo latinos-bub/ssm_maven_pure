@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.2.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+
+
+    <!--配置读取jdbc.properties配置文件的工具类: PropertyPlaceholderConfigurer-->
+    <bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <!--配置 jdbc.properties 的读取位置 如果是 资源文件，路径就是用 . 隔开的，
+        当处于 resouces 直接根目录下的，就是 classpath，若有子包的话，就是 classpath* -->
+        <property name="location" value="classpath:jdbc.properties"/>
+    </bean>
+
+
+    <!--配置数据源及数据库连接池: BasicDataSource-->
+    <bean id="basicDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="${driverClassName}"></property>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+    </bean>
+
+
+    <!--读取书写sql语句的xml文件的位置-->
+    <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--注入数据源-->
+        <property name="dataSource" ref="basicDataSource"/>
+        <!--指定xml文件的存放位置-->
+        <property name="mapperLocations" value="classpath*:com/latin/mapper/*.xml"></property>
+        <!--指定mybatis主配置文件-->
+        <property name="configLocation" value="classpath:mybatis.xml"/>
+    </bean>
+
+
+    <!--读取dao层接口类，将dao层与对应的xml文件关联-->
+    <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--指定dao接口类的位置-->
+        <property name="basePackage" value="com.latin.mapper"/>
+    </bean>
+
+</beans>

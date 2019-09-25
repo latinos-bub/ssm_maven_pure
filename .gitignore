@@ -1,0 +1,9 @@
+# ide
+/.idea
+ssm_maven_pure.iml
+
+
+# compile
+/target
+
+/logs
