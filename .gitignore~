@@ -7,7 +7,3 @@ ssm_maven_pure.iml
 /target
 
 /logs
-
-
-# library
-/lib
